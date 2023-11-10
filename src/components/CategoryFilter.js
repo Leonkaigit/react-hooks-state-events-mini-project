@@ -1,10 +1,22 @@
+// CategoryFilter.js
 import React from "react";
+import { useTaskContext } from "./TaskContext";
 
 function CategoryFilter() {
+  const { categories, selectedCategory, onCategoryChange } = useTaskContext();
+
   return (
     <div className="categories">
       <h5>Category filters</h5>
-      {/* render <button> elements for each category here */}
+      {categories.map((category) => (
+        <button
+          key={category}
+          className={category === selectedCategory ? "selected" : ""}
+          onClick={() => onCategoryChange(category)}
+        >
+          {category}
+        </button>
+      ))}
     </div>
   );
 }
